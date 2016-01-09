@@ -1,5 +1,5 @@
 package UML;
 
-public class CompLine {
+public class CompLine extends LineObject{
 
 }

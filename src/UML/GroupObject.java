@@ -1,5 +1,5 @@
 package UML;
 
-public class GroupObject {
+public class GroupObject extends Shape{
 
 }

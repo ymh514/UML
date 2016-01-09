@@ -1,5 +1,5 @@
 package UML;
 
-public class LineObject {
+public class LineObject extends Shape{
 
 }

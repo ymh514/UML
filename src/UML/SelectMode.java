@@ -1,5 +1,5 @@
 package UML;
 
-public class SelectMode {
+public class SelectMode extends Mode{
 
 }

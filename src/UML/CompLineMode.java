@@ -1,5 +1,5 @@
 package UML;
 
-public class CompLineMode {
+public class CompLineMode extends Mode{
 
 }

@@ -1,5 +1,5 @@
 package UML;
 
-public class UseCase {
+public class UseCase extends BasicObject{
 
 }

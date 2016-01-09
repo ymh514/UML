@@ -1,5 +1,5 @@
 package UML;
 
-public class AssocLine {
+public class AssocLine extends LineObject{
 
 }

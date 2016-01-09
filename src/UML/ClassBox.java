@@ -1,5 +1,5 @@
 package UML;
 
-public class ClassBox {
+public class ClassBox extends BasicObject{
 
 }
