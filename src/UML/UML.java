@@ -40,7 +40,7 @@ public class UML extends Application {
         umlPane.setLeft(buttonPanel.getButtonPanel());
         umlPane.setRight(canvasPane.getCanvasPane());
         umlPane.setBottom(eventCoordinate = new Text(canvasPane.getEventCoordinate()));
-
+        // TESTSTETEST
         Scene primaryScene = new Scene(umlPane);
         primaryStage.setScene(primaryScene);
         primaryStage.show();
