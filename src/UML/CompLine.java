@@ -2,8 +2,7 @@ package UML;
 
 public class CompLine extends LineObject{
 
-	public CompLine(double w, double h) {
-		super(w, h);
+	public CompLine() {
 		// TODO Auto-generated constructor stub
 	}
 

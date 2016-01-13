@@ -1,12 +1,11 @@
 package UML;
 
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 
 public class CompLineBtn extends Buttons{
-	CompLineMode compLineMode;
-	public CompLineBtn(String name, Node icon) {
-		super(name, icon);
-		compLineMode = new CompLineMode();
+	public CompLineBtn(String name,ImageView icon,Canvas canvasPane) {
+		super(name, icon, canvasPane);
 //		this.setOnMouseClicked(compLineMode);
 //		this.setOnMouseDragged(compLineMode);
 //		this.setOnMouseReleased(compLineMode);

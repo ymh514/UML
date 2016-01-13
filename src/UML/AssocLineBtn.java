@@ -1,12 +1,11 @@
 package UML;
 
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 
 public class AssocLineBtn extends Buttons{
-	AssocLineMode assocLineMode;
-	public AssocLineBtn(String name, Node icon) {
-		super(name, icon);
-		assocLineMode = new AssocLineMode();
+	public AssocLineBtn(String name,ImageView icon,Canvas canvasPane) {
+		super(name, icon, canvasPane);
 //		this.setOnMouseClicked(assocLineMode);
 //		this.setOnMouseDragged(assocLineMode);
 //		this.setOnMouseReleased(assocLineMode);

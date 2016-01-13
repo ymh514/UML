@@ -1,12 +1,11 @@
 package UML;
 
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 
 public class GeneLineBtn extends Buttons{
-	GeneLineMode geneLineMode;
-	public GeneLineBtn(String name, Node icon) {
-		super(name, icon);
-		geneLineMode = new GeneLineMode();
+	public GeneLineBtn(String name,ImageView icon,Canvas canvasPane) {
+		super(name, icon, canvasPane);
 //		this.setOnMouseClicked(geneLineMode);
 //		this.setOnMouseDragged(geneLineMode);
 //		this.setOnMouseReleased(geneLineMode);

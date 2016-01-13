@@ -21,8 +21,8 @@ import javafx.stage.Stage;
 
 public class UML extends Application {
 	public Text eventCoordinate;
-	private Canvas canvasPane;
-	private ButtonPanel buttonPanel;
+	public Canvas canvasPane;
+	public ButtonPanel buttonPanel;
 	
     public static void main(String[] args) {
         launch(args);
@@ -43,6 +43,7 @@ public class UML extends Application {
         // TESTSTETEST
         Scene primaryScene = new Scene(umlPane);
         primaryStage.setScene(primaryScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
 	}
@@ -50,7 +51,6 @@ public class UML extends Application {
 	public Canvas getCanvas(){
 		return this.canvasPane;
 	}
-	
 	public ButtonPanel getButtonPanel(){
 		return this.buttonPanel;
 	}

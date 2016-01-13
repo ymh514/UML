@@ -17,7 +17,7 @@ public class ButtonPanel extends VBox {
 	public CompLineBtn compLineBtn;
 	public ClassBoxBtn classBoxBtn;
 	public UseCaseBtn useCaseBtn;
-//	public Toggle current;
+
 	private UML uml;
 	
 	
@@ -27,12 +27,12 @@ public class ButtonPanel extends VBox {
 		
         buttonPanel = new VBox(10);
         buttonPanel.setPadding(new Insets(15, 15, 15, 15));
-        selectBtn = new SelectBtn("selct",new ImageView("1.png"));
-        assocLineBtn = new AssocLineBtn("assocline",new ImageView("2.png"));
-        geneLineBtn = new GeneLineBtn("genelin",new ImageView("3.png"));
-        compLineBtn = new CompLineBtn("compline",new ImageView("4.png"));
-        classBoxBtn = new ClassBoxBtn("classbox",new ImageView("5.png"));
-        useCaseBtn = new UseCaseBtn("usecase",new ImageView("6.png"));
+        selectBtn = new SelectBtn("selct",new ImageView("1.png"),this.uml.getCanvas());
+        assocLineBtn = new AssocLineBtn("assocline",new ImageView("2.png"),this.uml.getCanvas());
+        geneLineBtn = new GeneLineBtn("genelin",new ImageView("3.png"),this.uml.getCanvas());
+        compLineBtn = new CompLineBtn("compline",new ImageView("4.png"),this.uml.getCanvas());
+        classBoxBtn = new ClassBoxBtn("classbox",new ImageView("5.png"),this.uml.getCanvas());
+        useCaseBtn = new UseCaseBtn("usecase",new ImageView("6.png"),this.uml.getCanvas());
 
         ToggleGroup btnGroup = new ToggleGroup();
         selectBtn.setToggleGroup(btnGroup);

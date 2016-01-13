@@ -1,5 +1,7 @@
 package UML;
 
+import java.util.ArrayList;
+
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -10,26 +12,30 @@ import javafx.scene.input.PickResult;
 import javafx.scene.text.Text;
 
 public class Mode implements EventHandler<MouseEvent>{
+	protected Canvas canvas;
+	protected Shape newShape;
+	protected ArrayList<Shape> shapeList;
+	
 	@Override
 	public void handle(MouseEvent event) {
 		// TODO Auto-generated method stub
-
-		
 		if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
-//			System.out.println("Mouse Pressed");
-
+			System.out.println("Mouse Pressed");
 		}
 		else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
-//			System.out.println("Mouse Dragged");
-
+			System.out.println("Mouse Dragged");
 		}
 		else if(event.getEventType() == MouseEvent.MOUSE_RELEASED){
-//			System.out.println("Mouse Realeased");
-
+			System.out.println("Mouse Realeased");
 		}
 	}
-	public Mode getMode(){
-		return this;
+	public Mode(ArrayList<Shape> shapeList,Canvas canvasPane){
+		this.shapeList = shapeList;
+		this.canvas = canvasPane;
+	}
+	
+	public Shape getNewShape(){
+		return this.newShape;
 	}
 
 }
