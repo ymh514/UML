@@ -17,7 +17,7 @@ public class SelectMode extends Mode{
 		// TODO Auto-generated constructor stub
 
 	}
-
+	//testttt
 	@Override
 	public void handle(MouseEvent event) {
 		if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
