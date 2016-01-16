@@ -28,7 +28,6 @@ public class Canvas extends Pane {
 	private ClassBoxMode classBoxMode = new ClassBoxMode(shapeList,this);
 	private UseCaseMode useCaseMode = new UseCaseMode(shapeList,this);
 	
-
 	private UML uml;
 	private ButtonPanel buttonPanel;
 	private int modeIndex;

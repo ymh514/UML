@@ -26,7 +26,7 @@ public class Mode implements EventHandler<MouseEvent>{
 			System.out.println("Mouse Dragged");
 		}
 		else if(event.getEventType() == MouseEvent.MOUSE_RELEASED){
-			System.out.println("Mouse Realeased");
+			System.out.println("Mouse Realeased"); 
 		}
 	}
 	public Mode(ArrayList<Shape> shapeList,Canvas canvasPane){

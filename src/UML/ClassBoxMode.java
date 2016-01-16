@@ -22,6 +22,7 @@ public class ClassBoxMode extends Mode{
 			this.newShape = classBox;
 			this.shapeList.add(this.newShape);
 			this.canvas.getChildren().add(this.newShape);
+			System.out.println("classBox size : "+classBox.getChildren().size());
 			System.out.println("canvas size: "+this.canvas.getChildren().size());
 			System.out.println("shapeList size: "+this.shapeList.size());
 		}
