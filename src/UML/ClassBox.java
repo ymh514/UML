@@ -1,5 +1,6 @@
 package UML;
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -30,27 +31,5 @@ public class ClassBox extends BasicObject{
         this.getChildren().addAll(rectangle, line1, line2, text);
 		System.out.println("class Box constructor");
 	}
-	
-//	public Shape draw(){
-//		System.out.println("draw classbox");
-//        Rectangle rectangle =  new Rectangle(width,height);
-//        rectangle.setStroke(Color.BLACK);
-//        rectangle.setFill(Color.GRAY);
-//        rectangle.setDisable(true);
-//
-//        Line line1 = new Line(0, 50, width, 50);
-//        Line line2 = new Line(0, 100, width, 100);
-//        line1.setDisable(true);
-//        line2.setDisable(true);
-//
-//        text = new Text();
-//        text.setText("Class Name");
-//        text.setX(30);
-//        text.setY(23);
-//        text.setDisable(true);
-//
-//        this.getChildren().addAll(rectangle, line1, line2, text);
-//        return this;
-//	}
 
 }
