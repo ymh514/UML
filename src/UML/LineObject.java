@@ -6,9 +6,11 @@ import javafx.scene.shape.Rectangle;
 
 public class LineObject extends Shape {
 	
-    protected Shape startShape;
-    protected Shape endShape;
+//    protected Shape startShape;
+//    protected Shape endShape;
     protected Line connectLine;
+    protected Port beginPort;
+    protected Port endPort;
     protected Rectangle geneObj;
     protected Polygon compObj;
     
@@ -20,13 +22,19 @@ public class LineObject extends Shape {
 		// TODO Auto-generated constructor stub
 	}
 
-    public void setStartShape(Shape shape) {
-    	startShape = shape;
-
+//    public void setStartShape(Shape shape) {
+//    	startShape = shape;
+//
+//    }
+//
+//    public void setEndShape(Shape shape) {
+//    	endShape = shape;
+//    }
+    
+    public void setBeginPort(Port beginPort){
+    	this.beginPort = beginPort;
     }
-
-    public void setEndShape(Shape shape) {
-    	endShape = shape;
+    public void setEndPort(Port endPort){
+    	this.endPort = endPort;
     }
-
 }

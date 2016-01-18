@@ -44,11 +44,12 @@ public class Mode implements EventHandler<MouseEvent>{
 
         for(int i=0; i<this.shapeList.size(); i++) {
 //        		System.out.println("this : "+this.shapeList.get(i).getClass().getSuperclass().getSuperclass().getName());
-            if(this.shapeList.get(i).getClass().getSuperclass().getSuperclass().getName() == "UML.Shape") {
+            if(this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.BasicObject") {
 
                 Shape tempShape = this.shapeList.get(i);
-                
-                System.out.println(tempShape.getClass().getName());
+                System.out.println("-------------------------");
+                System.out.println(i+" : "+tempShape.getClass().getName());
+                System.out.println("-------------------------");
                 Point2D[] points = tempShape.getBoundary();
 //                System.out.print(tempShape.getBoundary());
                 if(x >points[0].getX() && x < points[1].getX() && y > points[0].getY() && y < points[1].getY()){

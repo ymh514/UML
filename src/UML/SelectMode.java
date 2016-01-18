@@ -49,6 +49,7 @@ public class SelectMode extends Mode{
 		else if(event.getEventType() == MouseEvent.MOUSE_RELEASED && selectShape!=null){
 			selectShape.setLayoutX(event.getX() - pressX + shapeLayoutX);
 			selectShape.setLayoutY(event.getY() - pressY + shapeLayoutY);
+			
 		}
 	}
 

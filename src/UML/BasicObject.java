@@ -18,7 +18,7 @@ public class BasicObject extends Shape {
     protected double halfPortSize = 5;
 
     protected Text text;
-    protected ArrayList<Point2D> portCoordinate;
+//    protected ArrayList<Point2D> coordinate;
 
     protected Port port1;
     protected Port port2;
@@ -32,12 +32,20 @@ public class BasicObject extends Shape {
         height = h;
         halfHeight = h/2;
 //        text = new Text("");
-        
+//        coordinate = new ArrayList<>(4);
         port1 = new Port(-portSize, halfHeight - halfPortSize, portSize, portSize);
         port2 = new Port(halfWidth - halfPortSize, -portSize, portSize, portSize);
         port3 = new Port(halfWidth - halfPortSize, height, portSize, portSize);
         port4 = new Port(width, halfHeight - halfPortSize, portSize, portSize);
         
+//        coordinate.add(new Point2D(this.getLayoutX(), this.getLayoutY() + height / 2));
+//        coordinate.add(new Point2D(this.getLayoutX() + width / 2, this.getLayoutY()));
+//        coordinate.add(new Point2D(this.getLayoutX() + width / 2, this.getLayoutY() + height));
+//        coordinate.add(new Point2D(this.getLayoutX() + width, this.getLayoutY() + height / 2));
+
+//        for(int i=0;i<coordinate.size();i++){
+//        	System.out.println("port coord. x: "+coordinate.get(i).getX()+" y: "+coordinate.get(i).getY());
+//        }
 //        System.out.println("port1-- x:"+port1.getX()+" y:"+port1.getY());
 //        System.out.println("port2-- x:"+port2.getX()+" y:"+port2.getY());
 //        System.out.println("port3-- x:"+port3.getX()+" y:"+port3.getY());
