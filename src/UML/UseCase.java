@@ -25,6 +25,9 @@ public class UseCase extends BasicObject{
         text.setX(37);
         text.setY(45);
         text.setDisable(true);
+        
+        super.tunePortPosition();
+
         this.getChildren().addAll(ellipse, text);
 		System.out.println("use case constructor");
 

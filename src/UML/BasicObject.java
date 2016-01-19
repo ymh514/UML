@@ -20,6 +20,7 @@ public class BasicObject extends Shape {
     protected Text text;
 //    protected ArrayList<Point2D> coordinate;
 
+    protected ArrayList<Port> portList = new ArrayList<>(4);
     protected Port port1;
     protected Port port2;
     protected Port port3;
@@ -37,6 +38,26 @@ public class BasicObject extends Shape {
         port2 = new Port(halfWidth - halfPortSize, -portSize, portSize, portSize);
         port3 = new Port(halfWidth - halfPortSize, height, portSize, portSize);
         port4 = new Port(width, halfHeight - halfPortSize, portSize, portSize);
+       
+        portList.add(port1);
+        portList.add(port2);
+        portList.add(port3);
+        portList.add(port4);
+        
+        
+        
+//        for(int i=0;i<portList.size();i++){
+//        	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX());
+//        	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY());
+//        }
+//        
+//        for(int i=0;i<portList.size();i++){
+//        	System.out.println("------"+i+"-----");
+//        	System.out.println("layout x :"+portList.get(i).getX());
+//        	System.out.println("layout y :"+portList.get(i).getY());
+//        }
+        
+        
         
 //        coordinate.add(new Point2D(this.getLayoutX(), this.getLayoutY() + height / 2));
 //        coordinate.add(new Point2D(this.getLayoutX() + width / 2, this.getLayoutY()));
@@ -70,4 +91,27 @@ public class BasicObject extends Shape {
         points[1] = new Point2D(this.getLayoutX() + width, this.getLayoutY() + height);
         return points;
     }
+    public void tunePortPosition(){
+    	
+    	for(int i=0;i<portList.size();i++){
+			if(i ==0){
+		    	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX()+this.portSize);
+		    	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY()+this.halfPortSize);
+			}
+			else if(i==1){
+		    	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX()+this.halfPortSize);
+		    	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY()+this.portSize);
+			}
+			else if(i==2){
+		    	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX()+this.halfPortSize);
+		    	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY());
+
+			}
+			else if(i==3){
+		    	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX());
+		    	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY()+this.halfPortSize);
+			}
+    	}
+    }
+    
 }

@@ -37,8 +37,10 @@ public class GeneLineMode extends Mode{
             
             if(startShape!=null){
         		System.out.println("find start shape");
-                Point2D startPort = getClosestPort((BasicObject)startShape,pressX,pressY);
+                Point2D startPort = getClosestPortDist((BasicObject)startShape,pressX,pressY);
                 assocLine = new AssocLine();
+                assocLine.beginPort = getClosestPort((BasicObject)startShape, pressX, pressY);
+                
                 showLine = new Line(startPort.getX(), startPort.getY(),
                 		startPort.getX(), startPort.getY());
                 assocLine.connectLine.setStartX(startPort.getX());
@@ -73,10 +75,11 @@ public class GeneLineMode extends Mode{
    
             if(endShape!=null){
         		System.out.println("find end shape");
-                Point2D endPort = getClosestPort((BasicObject)endShape,pressX,pressY);
+                Point2D endPort = getClosestPortDist((BasicObject)endShape,pressX,pressY);
+                assocLine.endPort = getClosestPort((BasicObject)endShape, pressX, pressY);
                 assocLine.connectLine.setEndX(endPort.getX());
                 assocLine.connectLine.setEndY(endPort.getY());
-               
+
                 canvas.getChildren().add(assocLine.connectLine);
                 shapeList.add(assocLine);
                

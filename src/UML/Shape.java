@@ -25,7 +25,9 @@ public class Shape extends Pane {
     	this.selectState = selectState;
     }
     public Point2D[] getBoundary() {
-        return null
-        		;
+        return null;
+    }
+    public void tunePortPosition(){
+    	
     }
 }

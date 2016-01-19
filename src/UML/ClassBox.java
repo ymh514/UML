@@ -28,6 +28,19 @@ public class ClassBox extends BasicObject{
         text.setY(23);
         text.setDisable(true);
 
+        super.tunePortPosition();
+//	    for(int i=0;i<portList.size();i++){
+//	    	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX());
+//	    	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY());
+//	    }
+	    
+//	    for(int i=0;i<portList.size();i++){
+//	    	System.out.println("------"+i+"-----");
+//	    	System.out.println("layout x :"+portList.get(i).getLayoutXOnCanvas());
+//	    	System.out.println("layout y :"+portList.get(i).getLayoutYOnCanvas());
+//	    }
+
+        
         this.getChildren().addAll(rectangle, line1, line2, text);
 		System.out.println("class Box constructor");
 	}
