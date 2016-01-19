@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 public class Shape extends Pane {
 
-	protected boolean selectState;
+	protected boolean selectState = false;
 	
     public Shape() {
     	System.out.println("shape constructor");
@@ -20,6 +20,9 @@ public class Shape extends Pane {
     public Shape draw(){
 		return null;
     	
+    }
+    public boolean getSelectState(){
+    	return selectState;
     }
     public void setSelected(Boolean selectState){
     	this.selectState = selectState;

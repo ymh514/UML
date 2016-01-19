@@ -1,5 +1,7 @@
 package UML;
 
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -17,7 +19,8 @@ public class ButtonPanel extends VBox {
 	public CompLineBtn compLineBtn;
 	public ClassBoxBtn classBoxBtn;
 	public UseCaseBtn useCaseBtn;
-
+	public ArrayList<Buttons> buttonsList = new ArrayList<Buttons>();
+	
 	private UML uml;
 	
 	
@@ -46,6 +49,13 @@ public class ButtonPanel extends VBox {
         
         buttonPanel.getChildren().addAll(selectBtn,assocLineBtn,geneLineBtn,compLineBtn,classBoxBtn,useCaseBtn);
         
+        buttonsList.add(selectBtn);
+        buttonsList.add(assocLineBtn);
+        buttonsList.add(geneLineBtn);
+        buttonsList.add(compLineBtn);
+        buttonsList.add(classBoxBtn);
+        buttonsList.add(useCaseBtn);
+
 	}
 	public VBox getButtonPanel(){
 		return this.buttonPanel;

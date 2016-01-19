@@ -8,6 +8,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -23,6 +26,8 @@ public class UML extends Application {
 	public Text eventCoordinate;
 	public Canvas canvasPane;
 	public ButtonPanel buttonPanel;
+	public MenuBar menuBar = new MenuBar();
+
 	
     public static void main(String[] args) {
         launch(args);
@@ -33,14 +38,30 @@ public class UML extends Application {
 		// TODO Auto-generated method stub
         primaryStage.setTitle("UML");
         BorderPane umlPane = new BorderPane();
+        
+        Menu menuFile = new Menu("File");
+        Menu menuEdit = new Menu("Edit");
+        MenuItem groupItem = new MenuItem("Group");
+        MenuItem ungroupItem = new MenuItem("UnGroup");
+        MenuItem changeNameItem = new MenuItem("Change Object Name");
+        MenuItem exitItem = new MenuItem("Exit");
+        menuFile.getItems().add(exitItem);
+        menuEdit.getItems().addAll(groupItem,ungroupItem,changeNameItem);
+        menuBar.getMenus().addAll(menuFile,menuEdit);
 
         buttonPanel = new ButtonPanel(this);
         canvasPane = new Canvas(this);
-
+        
+        
+//        exitItem.setOnAction(event ->{
+//        	System.out.println(menuBar.getMenus().get(1).getItems().get(0));
+//        	System.out.println("show show show ");
+//        });
+        umlPane.setTop(menuBar);
         umlPane.setLeft(buttonPanel.getButtonPanel());
         umlPane.setRight(canvasPane.getCanvasPane());
         umlPane.setBottom(eventCoordinate = new Text(canvasPane.getEventCoordinate()));
-        // TESTSTETEST
+
         Scene primaryScene = new Scene(umlPane);
         primaryStage.setScene(primaryScene);
         primaryStage.setResizable(false);
@@ -56,5 +77,8 @@ public class UML extends Application {
 	}
 	public Text getCoordinate(){
 		return this.eventCoordinate;
+	}
+	public MenuBar getMenuBar(){
+		return this.menuBar;
 	}
 }

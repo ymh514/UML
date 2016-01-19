@@ -75,6 +75,9 @@ public class BasicObject extends Shape {
         this.getChildren().addAll(port1,port2,port3,port4);
 //        this.getChildren().add(text);
     }
+    public void setName(String name){
+    	this.text.setText(name);
+    }
     public void setShowSelect(Boolean showValue){
     	this.port1.setVisible(showValue);
     	this.port2.setVisible(showValue);
