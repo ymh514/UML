@@ -13,7 +13,7 @@ public class CompLineMode extends Mode{
 	private Shape endShape;
 	private double pressX;
 	private double pressY;
-	private AssocLine assocLine;
+	private CompLine compLine;
 	private Line showLine;
 
 	public CompLineMode(ArrayList<Shape> shapeList, Canvas canvas) {
@@ -38,18 +38,18 @@ public class CompLineMode extends Mode{
             if(startShape!=null){
         		System.out.println("find start shape");
                 Point2D startPort = getClosestPortDist((BasicObject)startShape,pressX,pressY);
-                assocLine = new AssocLine();
-                assocLine.beginPort = getClosestPort((BasicObject)startShape, pressX, pressY);
+                compLine = new CompLine();
+                compLine.beginPort = getClosestPort((BasicObject)startShape, pressX, pressY);
                 
                 showLine = new Line(startPort.getX(), startPort.getY(),
                 		startPort.getX(), startPort.getY());
-                assocLine.connectLine.setStartX(startPort.getX());
-                assocLine.connectLine.setStartY(startPort.getY());
+                compLine.connectLine.setStartX(startPort.getX());
+                compLine.connectLine.setStartY(startPort.getY());
                 canvas.getChildren().add(showLine);
             }else{
         		System.out.println("can't find start shape");
             	startShape = null;
-            	assocLine = null;
+            	compLine = null;
             	showLine = new Line(pressX,pressY,pressX,pressY);
             	showLine.setStroke(Color.RED);
             	canvas.getChildren().add(showLine);
@@ -76,12 +76,13 @@ public class CompLineMode extends Mode{
             if(endShape!=null){
         		System.out.println("find end shape");
                 Point2D endPort = getClosestPortDist((BasicObject)endShape,pressX,pressY);
-                assocLine.endPort = getClosestPort((BasicObject)endShape, pressX, pressY);
-                assocLine.connectLine.setEndX(endPort.getX());
-                assocLine.connectLine.setEndY(endPort.getY());
-
-                canvas.getChildren().add(assocLine.connectLine);
-                shapeList.add(assocLine);
+                compLine.endPort = getClosestPort((BasicObject)endShape, pressX, pressY);
+                compLine.connectLine.setEndX(endPort.getX());
+                compLine.connectLine.setEndY(endPort.getY());
+                compLine.setRectangle();
+                canvas.getChildren().add(compLine.connectLine);
+                canvas.getChildren().add(compLine.getRectangle());
+                shapeList.add(compLine);
                
             }
 //            startShape = null;

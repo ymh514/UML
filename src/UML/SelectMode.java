@@ -46,77 +46,56 @@ public class SelectMode extends Mode{
 			selectShape.setLayoutX(event.getX() - pressX + shapeLayoutX);
 			selectShape.setLayoutY(event.getY() - pressY + shapeLayoutY);
 			selectShape.tunePortPosition();
-			System.out.println("now's shapeList amount : "+shapeList.size());
 			
 			for(int i=0;i<shapeList.size();i++){
 				if(shapeList.get(i) instanceof LineObject){
-//					System.out.println("%%%%%%%%%%%% : "+i);
 					LineObject tempLine = (LineObject) shapeList.get(i);
-//					System.out.println(tempLine.beginPort.getX());
-//					System.out.println(tempLine.beginPort.getY());
-//					System.out.println(tempLine.endPort.getX());
-//					System.out.println(tempLine.endPort.getY());
-					
-//					System.out.println(tempLine.beginPort.getLayoutX());
-//					System.out.println(tempLine.beginPort.getLayoutY());
-//					System.out.println(tempLine.endPort.getLayoutX());
-//					System.out.println(tempLine.endPort.getLayoutY());
-					
-//					System.out.println(tempLine.beginPort.getLayoutXOnCanvas());
-//					System.out.println(tempLine.beginPort.getLayoutYOnCanvas());
-//					System.out.println(tempLine.endPort.getLayoutXOnCanvas());
-//					System.out.println(tempLine.endPort.getLayoutYOnCanvas());
 					
 					tempLine.connectLine.setStartX(tempLine.beginPort.getLayoutXOnCanvas()+tempLine.getLayoutX());
 					tempLine.connectLine.setStartY(tempLine.beginPort.getLayoutYOnCanvas()+tempLine.getLayoutY());
 					tempLine.connectLine.setEndX(tempLine.endPort.getLayoutXOnCanvas()+tempLine.getLayoutX());
 					tempLine.connectLine.setEndY(tempLine.endPort.getLayoutYOnCanvas()+tempLine.getLayoutY());
 					shapeList.set(i, tempLine);
+					if(tempLine.getClass().getName() == "UML.GeneLine"){
+						GeneLine tempGeneLine = (GeneLine) tempLine;
+						tempGeneLine.setTriangle();
+						tempLine = tempGeneLine;
+						
+					}
+					if(tempLine.getClass().getName() == "UML.CompLine"){
+						CompLine tempCompLine = (CompLine) tempLine;
+						tempCompLine.setRectangle();
+						tempLine = tempCompLine;
+					}
 				}
 			}
-
-			/*
-			 *  fixx
-			 */
-//			for(int i=0;i<shapeList.size();i++){
-//				if(shapeList.get(i) instanceof LineObject){
-//					LineObject tempLine = (LineObject) shapeList.get(i);
-//					tempLine.connectLine.setStartX(tempLine.beginPort.getLayoutX());
-//					tempLine.connectLine.setStartY(tempLine.beginPort.getLayoutY());
-//					tempLine.connectLine.setEndX(tempLine.endPort.getLayoutX());
-//					tempLine.connectLine.setEndY(tempLine.endPort.getLayoutY());
-//					shapeList.set(i, tempLine);
-//				}
-//			}
-			/*
-			 *  fixx
-			 */
 		}
 		else if(event.getEventType() == MouseEvent.MOUSE_RELEASED && selectShape!=null){
 			selectShape.setLayoutX(event.getX() - pressX + shapeLayoutX);
 			selectShape.setLayoutY(event.getY() - pressY + shapeLayoutY);
 			selectShape.tunePortPosition();
 
-			/*
-			 * debug
-			 * 
-			 */
-			BasicObject tempObj = (BasicObject) selectShape;
-			for(int i=0;i<tempObj.portList.size();i++){
-				System.out.println("port "+i+" x:" +tempObj.portList.get(i).getX());
-				System.out.println("port "+i+" y:" +tempObj.portList.get(i).getY());
-				
-			}
+//			/*
+//			 * debug
+//			 * 
+//			 */
+//			BasicObject tempObj = (BasicObject) selectShape;
+//			for(int i=0;i<tempObj.portList.size();i++){
+//				System.out.println("port "+i+" x:" +tempObj.portList.get(i).getX());
+//				System.out.println("port "+i+" y:" +tempObj.portList.get(i).getY());
+//				
+//			}
 			
 			/*
 			 *  fixx
 			 */
-			System.out.println("now's shapeList amount : "+shapeList.size());
 			
 			for(int i=0;i<shapeList.size();i++){
 				if(shapeList.get(i) instanceof LineObject){
 //					System.out.println("%%%%%%%%%%%% : "+i);
 					LineObject tempLine = (LineObject) shapeList.get(i);
+					
+
 //					System.out.println(tempLine.beginPort.getX());
 //					System.out.println(tempLine.beginPort.getY());
 //					System.out.println(tempLine.endPort.getX());
@@ -136,6 +115,19 @@ public class SelectMode extends Mode{
 					tempLine.connectLine.setStartY(tempLine.beginPort.getLayoutYOnCanvas()+tempLine.getLayoutY());
 					tempLine.connectLine.setEndX(tempLine.endPort.getLayoutXOnCanvas()+tempLine.getLayoutX());
 					tempLine.connectLine.setEndY(tempLine.endPort.getLayoutYOnCanvas()+tempLine.getLayoutY());
+					
+					if(tempLine.getClass().getName() == "UML.GeneLine"){
+						GeneLine tempGeneLine = (GeneLine) tempLine;
+						tempGeneLine.setTriangle();
+						tempLine = tempGeneLine;
+						
+					}
+					if(tempLine.getClass().getName() == "UML.CompLine"){
+						CompLine tempCompLine = (CompLine) tempLine;
+						tempCompLine.setRectangle();
+						tempLine = tempCompLine;
+					}
+
 					shapeList.set(i, tempLine);
 				}
 			}
