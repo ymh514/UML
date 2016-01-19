@@ -33,6 +33,7 @@ public class SelectMode extends Mode{
 
 				selectShape.setShowSelect(true);
 				selectShape.setSelected(true);
+				
 				shapeLayoutX = selectShape.getLayoutX();
 				shapeLayoutY = selectShape.getLayoutY();
 				pressX = event.getX();

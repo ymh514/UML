@@ -42,7 +42,10 @@ public class Mode implements EventHandler<MouseEvent>{
 	public Shape checkShape(double x,double y){
 //		System.out.println("in 1 st");
 
-        for(int i=0; i<this.shapeList.size(); i++) {
+		/*
+		 *  start from the tail for the depth info.
+		 */
+        for(int i=this.shapeList.size()-1; i>=0; i--) {
 //        		System.out.println("this : "+this.shapeList.get(i).getClass().getSuperclass().getSuperclass().getName());
             if(this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.BasicObject") {
 
