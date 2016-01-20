@@ -23,10 +23,74 @@ public class Mode implements EventHandler<MouseEvent> {
 	/*
 	 * under parameter is for line object
 	 */
+	private Shape startShape;
+	private Shape endShape;
+	private double pressX;
+	private double pressY;
+	private Line showLine;
 
 	@Override
 	public void handle(MouseEvent event) {
+		/*
+		 * these code is for line object,basic object will override
+		 */
+		if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
+			startShape = null;
+			pressX = event.getX();
+			pressY = event.getY();
 
+			startShape = checkShape(pressX, pressY);
+
+			if (startShape != null) {
+				Point2D startPort = getClosestPortDist((BasicObject) startShape, pressX, pressY);
+
+				/*
+				 * define the new line type
+				 */
+				if (this.getClass().getName() == "UML.AssocLineMode") {
+					newLine = new AssocLine();
+				} else if (this.getClass().getName() == "UML.GeneLineMode") {
+					newLine = new GeneLine();
+				} else if (this.getClass().getName() == "UML.CompLineMode") {
+					newLine = new CompLine();
+				}
+
+				newLine.setBeginPort(getClosestPort((BasicObject) startShape, pressX, pressY));
+				showLine = new Line(startPort.getX(), startPort.getY(), startPort.getX(), startPort.getY());
+				newLine.connectLine.setStartX(startPort.getX());
+				newLine.connectLine.setStartY(startPort.getY());
+				canvas.getChildren().add(showLine);
+			} else {
+				startShape = null;
+				newLine = null;
+				showLine = new Line(pressX, pressY, pressX, pressY);
+				showLine.setStroke(Color.RED);
+				canvas.getChildren().add(showLine);
+			}
+		} else if (event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
+			showLine.setEndX(event.getX());
+			showLine.setEndY(event.getY());
+
+		} else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
+			canvas.getChildren().remove(showLine);
+
+			pressX = event.getX();
+			pressY = event.getY();
+			endShape = null;
+
+			endShape = checkShape(pressX, pressY);
+
+			if (endShape != null) {
+				Point2D endPort = getClosestPortDist((BasicObject) endShape, pressX, pressY);
+				newLine.endPort = getClosestPort((BasicObject) endShape, pressX, pressY);
+				newLine.connectLine.setEndX(endPort.getX());
+				newLine.connectLine.setEndY(endPort.getY());
+				newLine.setEndObj();
+				newLine.draw(canvas);
+				shapeList.add(newLine);
+			}
+
+		}
 	}
 
 	public Mode(ArrayList<Shape> shapeList, Canvas canvasPane) {
@@ -61,16 +125,8 @@ public class Mode implements EventHandler<MouseEvent> {
 		 * start from the tail for the depth info. without group
 		 */
 		for (int i = this.shapeList.size() - 1; i >= 0; i--) {
-			if (this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.BasicObject") { 
-				Shape tempShape = this.shapeList.get(i);
-				Point2D[] points = tempShape.getBoundary();
-				if (startPoint.getX() < points[0].getX() && startPoint.getY() < points[0].getY()
-						&& endPoint.getX() > points[1].getX() && endPoint.getY() > points[1].getY()) {
-					tempShape.setSelected(true);
 
-					this.shapeList.set(i, tempShape);
-				}
-			} else if (this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.LineObject") {
+			if (this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.LineObject") {
 				LineObject tempLine = (LineObject) this.shapeList.get(i);
 				if (startPoint.getX() < tempLine.connectLine.getStartX()
 						&& startPoint.getY() < tempLine.connectLine.getStartY()
@@ -80,8 +136,7 @@ public class Mode implements EventHandler<MouseEvent> {
 					this.shapeList.set(i, tempLine);
 				}
 
-			} else if (this.shapeList.get(i).getClass().getName() == "UML.GroupObject") {
-
+			} else {
 				Shape tempShape = this.shapeList.get(i);
 				Point2D[] points = tempShape.getBoundary();
 
@@ -117,19 +172,15 @@ public class Mode implements EventHandler<MouseEvent> {
 		}
 		for (int i = 0; i < distWizPorts.length; i++) {
 			if (distTemp == distWizPorts[0]) {
-				System.out.println("near port1");
 				returnCoor = new Point2D(endShape.port1.getX() + shapeLayout.getX() + endShape.portSize,
 						endShape.port1.getY() + shapeLayout.getY() + endShape.halfPortSize);
 			} else if (distTemp == distWizPorts[1]) {
-				System.out.println("near port2");
 				returnCoor = new Point2D(endShape.port2.getX() + shapeLayout.getX() + endShape.halfPortSize,
 						endShape.port2.getY() + shapeLayout.getY() + endShape.portSize);
 			} else if (distTemp == distWizPorts[2]) {
-				System.out.println("near port3");
 				returnCoor = new Point2D(endShape.port3.getX() + shapeLayout.getX() + endShape.halfPortSize,
 						endShape.port3.getY() + shapeLayout.getY());
 			} else if (distTemp == distWizPorts[3]) {
-				System.out.println("near port4");
 				returnCoor = new Point2D(endShape.port4.getX() + shapeLayout.getX(),
 						endShape.port4.getY() + shapeLayout.getY() + endShape.halfPortSize);
 			}
@@ -177,64 +228,4 @@ public class Mode implements EventHandler<MouseEvent> {
 
 	}
 
-	// public void lineMouseEvent(MouseEvent event,Shape startShape,Shape
-	// endShape,double pressX,double pressY,Line showLine){
-	// if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-	// startShape = null;
-	// pressX = event.getX();
-	// pressY = event.getY();
-	//
-	// startShape = checkShape(pressX, pressY);
-	//
-	// if (startShape != null) {
-	// System.out.println("find start shape");
-	// Point2D startPort = getClosestPortDist((BasicObject) startShape, pressX,
-	// pressY);
-	// newLine.setBeginPort(getClosestPort((BasicObject) startShape, pressX,
-	// pressY));
-	// showLine = new Line(startPort.getX(), startPort.getY(), startPort.getX(),
-	// startPort.getY());
-	// newLine.connectLine.setStartX(startPort.getX());
-	// newLine.connectLine.setStartY(startPort.getY());
-	// canvas.getChildren().add(showLine);
-	// } else {
-	// System.out.println("can't find start shape");
-	// startShape = null;
-	// newLine = null;
-	// showLine = new Line(pressX, pressY, pressX, pressY);
-	// showLine.setStroke(Color.RED);
-	// canvas.getChildren().add(showLine);
-	// }
-	// } else if (event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
-	// showLine.setEndX(event.getX());
-	// showLine.setEndY(event.getY());
-	// } else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
-	//
-	// canvas.getChildren().remove(showLine);
-	//
-	// pressX = event.getX();
-	// pressY = event.getY();
-	// endShape = null;
-	//
-	// endShape = checkShape(pressX, pressY);
-	//
-	// if (endShape != null) {
-	// System.out.println("find end shape");
-	// Point2D endPort = getClosestPortDist((BasicObject) endShape, pressX,
-	// pressY);
-	// newLine.endPort = getClosestPort((BasicObject) endShape, pressX, pressY);
-	// newLine.connectLine.setEndX(endPort.getX());
-	// newLine.connectLine.setEndY(endPort.getY());
-	// newLine.setEndObj();
-	// newLine.draw(canvas);
-	// shapeList.add(newLine);
-	//
-	//// pressX = 0;
-	//// pressY = 0;
-	//// endShape = null;
-	//// startShape = null;
-	//
-	// }
-	// }
-	// }
 }

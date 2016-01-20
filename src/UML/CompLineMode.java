@@ -12,6 +12,5 @@ public class CompLineMode extends Mode {
 
 	public CompLineMode(ArrayList<Shape> shapeList, Canvas canvas) {
 		super(shapeList, canvas);
-//		newLine = new CompLine();
 	}
 }

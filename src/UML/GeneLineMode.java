@@ -12,7 +12,6 @@ public class GeneLineMode extends Mode {
 
 	public GeneLineMode(ArrayList<Shape> shapeList, Canvas canvas) {
 		super(shapeList, canvas);
-//		newLine = new GeneLine();
 	}
 
 }
