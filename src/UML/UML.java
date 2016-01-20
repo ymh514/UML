@@ -2,7 +2,6 @@ package UML;
 
 import java.util.ArrayList;
 
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,56 +27,59 @@ public class UML extends Application {
 	public ButtonPanel buttonPanel;
 	public MenuBar menuBar = new MenuBar();
 
-	
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-        primaryStage.setTitle("UML");
-        BorderPane umlPane = new BorderPane();
-        
-        generateMenubar();
+		primaryStage.setTitle("UML");
+		BorderPane umlPane = new BorderPane();
 
-        buttonPanel = new ButtonPanel(this);
-        canvasPane = new Canvas(this);
-        
-        umlPane.setTop(menuBar);
-        umlPane.setLeft(buttonPanel.getButtonPanel());
-        umlPane.setRight(canvasPane.getCanvasPane());
-        umlPane.setBottom(eventCoordinate = new Text(canvasPane.getEventCoordinate()));
+		generateMenubar();
 
-        Scene primaryScene = new Scene(umlPane);
-        primaryStage.setScene(primaryScene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+		buttonPanel = new ButtonPanel(this);
+		canvasPane = new Canvas(this);
+
+		umlPane.setTop(menuBar);
+		umlPane.setLeft(buttonPanel.getButtonPanel());
+		umlPane.setRight(canvasPane.getCanvasPane());
+		umlPane.setBottom(eventCoordinate = new Text(canvasPane.getEventCoordinate()));
+
+		Scene primaryScene = new Scene(umlPane);
+		primaryStage.setScene(primaryScene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 
 	}
-	
-	public Canvas getCanvas(){
+
+	public Canvas getCanvas() {
 		return this.canvasPane;
 	}
-	public ButtonPanel getButtonPanel(){
+
+	public ButtonPanel getButtonPanel() {
 		return this.buttonPanel;
 	}
-	public Text getCoordinate(){
+
+	public Text getCoordinate() {
 		return this.eventCoordinate;
 	}
-	public MenuBar getMenuBar(){
+
+	public MenuBar getMenuBar() {
 		return this.menuBar;
 	}
-	public void generateMenubar(){
-        Menu menuFile = new Menu("File");
-        Menu menuEdit = new Menu("Edit");
-        MenuItem groupItem = new MenuItem("Group");
-        MenuItem ungroupItem = new MenuItem("UnGroup");
-        MenuItem changeNameItem = new MenuItem("Change Object Name");
-        MenuItem exitItem = new MenuItem("Exit");
-        menuFile.getItems().add(exitItem);
-        menuEdit.getItems().addAll(groupItem,ungroupItem,changeNameItem);
-        menuBar.getMenus().addAll(menuFile,menuEdit);
+
+	public void generateMenubar() {
+		Menu menuFile = new Menu("File");
+		Menu menuEdit = new Menu("Edit");
+		MenuItem groupItem = new MenuItem("Group");
+		MenuItem ungroupItem = new MenuItem("UnGroup");
+		MenuItem changeNameItem = new MenuItem("Change Object Name");
+		MenuItem exitItem = new MenuItem("Exit");
+		menuFile.getItems().add(exitItem);
+		menuEdit.getItems().addAll(groupItem, ungroupItem, changeNameItem);
+		menuBar.getMenus().addAll(menuFile, menuEdit);
 
 	}
 }

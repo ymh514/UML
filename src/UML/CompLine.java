@@ -9,11 +9,6 @@ public class CompLine extends LineObject{
 	public CompLine() {
 		// TODO Auto-generated constructor stub
         rectangle = new Polygon();
-//        rectangle.getPoints().addAll(
-//                0.0, 0.0,
-//                20.0, 0.0,
-//                20.0, 20.0,
-//                0.0, 20.0);
         rectangle.getPoints().addAll(
                 10.0, 0.0,
                 20.0, 10.0,
@@ -39,15 +34,5 @@ public class CompLine extends LineObject{
     public void setEndObj(){
     	this.setRectangle();
     }
-	public void draw(Canvas canvas){
-    	this.setSelected(false);
-
-		this.setConnectLineXY();
-		this.setEndObj();
-
-        canvas.getChildren().add(this.connectLine);
-        canvas.getChildren().add(this.getEndObj());
-
-	}
 
 }

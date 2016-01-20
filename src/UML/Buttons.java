@@ -11,12 +11,9 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.paint.Color;
 
 public class Buttons extends ToggleButton {
-	public Buttons(String name,ImageView icon,Canvas canvasPane){
+	public Buttons(String name, ImageView icon, Canvas canvasPane) {
 		this.setText(name);
 		this.setGraphic(icon);
 		this.setBackground(Background.EMPTY);
-//		this.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, null)));
-	}
-	public void choosed(){
 	}
 }

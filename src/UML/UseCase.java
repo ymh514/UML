@@ -29,7 +29,6 @@ public class UseCase extends BasicObject{
         super.tunePortPosition();
         
         this.getChildren().addAll(ellipse, text);
-		System.out.println("use case constructor");
 	}
 	
 	public void draw(Canvas canvas){

@@ -14,10 +14,6 @@ public class GeneLine extends LineObject{
                 10.0,0.0,
                 0.0,20.0,
                 20.0,20.0);
-//        triangle.getPoints().addAll(
-//                0.0,0.0,
-//                0.0,20.0,
-//                20.0,10.0);  
         this.connectLine.setStroke(Color.BLACK);
         triangle.setFill(Color.GRAY);
         triangle.setStroke(Color.BLACK);
@@ -38,15 +34,5 @@ public class GeneLine extends LineObject{
     }
     public void setEndObj(){
     	this.setTriangle();
-    }
-    public void draw(Canvas canvas){
-    	this.setSelected(false);
-
-		this.setConnectLineXY();
-		this.setEndObj();
-
-        canvas.getChildren().add(this.connectLine);
-        canvas.getChildren().add(this.getEndObj());
-
     }
 }

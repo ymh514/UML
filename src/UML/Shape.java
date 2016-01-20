@@ -10,35 +10,56 @@ import javafx.scene.text.Text;
 public abstract class Shape extends Pane {
 
 	protected boolean selectState = false;
-	
-    public Shape() {
-    	System.out.println("shape constructor");
-    }
-    public abstract void draw(Canvas canvas);
-    
-    public abstract void setSelected(Boolean selectState);
-    
-//    public abstract void setSelected(Boolean selectState){
-//    	this.selectState = selectState;
-//    	this.setShowSelect(selectState);
-//    }
-    public boolean getSelectState(){
-    	return selectState;
-    }
 
-    public abstract void setShowSelect(Boolean showValue);
-    
+	public Shape() {
 
-    public Point2D[] getBoundary() {
-        return null;
-    }
-    public void tunePortPosition(){
-    	
-    }
-    public abstract Point2D getGroupRectEndPt(Point2D points,Point2D endPoint,int i);
-    
-    public abstract Point2D getGroupRectStartPt(Point2D points,Point2D startPoint,int i);
-    
-    public abstract void unGroup(ArrayList<Shape> shapeList);
-    
+	}
+
+	public abstract void draw(Canvas canvas);
+
+	public abstract void setSelected(Boolean selectState);
+
+	public abstract void setShowSelect(Boolean showValue);
+
+	public abstract Point2D[] getBoundary();
+
+	public abstract void unGroup(ArrayList<Shape> shapeList);
+
+	public abstract void tunePortPosition();
+
+	public boolean getSelectState() {
+		return selectState;
+	}
+
+	public Point2D getGroupRectEndPt(Point2D points, Point2D endPoint, int i) {
+
+		if (i == 0) {
+			endPoint = new Point2D(points.getX(), points.getY());
+
+		}
+		if (points.getX() >= endPoint.getX()) {
+			endPoint = new Point2D(points.getX(), endPoint.getY());
+		}
+		if (points.getY() >= endPoint.getY()) {
+			endPoint = new Point2D(endPoint.getX(), points.getY());
+		}
+		return endPoint;
+	}
+
+	public Point2D getGroupRectStartPt(Point2D points, Point2D startPoint, int i) {
+
+		if (i == 0) {
+			startPoint = new Point2D(points.getX(), points.getY());
+
+		}
+		if (points.getX() <= startPoint.getX()) {
+			startPoint = new Point2D(points.getX(), startPoint.getY());
+		}
+		if (points.getY() <= startPoint.getY()) {
+			startPoint = new Point2D(startPoint.getX(), points.getY());
+		}
+		return startPoint;
+
+	}
+
 }

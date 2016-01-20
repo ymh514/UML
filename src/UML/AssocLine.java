@@ -7,6 +7,7 @@ public class AssocLine extends LineObject{
 	public AssocLine() {
 		this.connectLine.setStroke(Color.BLACK);
 	}
+	@Override
 	public void draw(Canvas canvas){
     	this.setSelected(false);
 		this.setConnectLineXY();

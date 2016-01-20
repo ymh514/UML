@@ -31,7 +31,6 @@ public class ClassBox extends BasicObject{
         super.tunePortPosition();
         
         this.getChildren().addAll(rectangle, line1, line2, text);
-		System.out.println("class Box constructor");
 	}
 	
 	public void draw(Canvas canvas){
