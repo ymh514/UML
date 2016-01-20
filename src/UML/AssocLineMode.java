@@ -20,6 +20,7 @@ public class AssocLineMode extends Mode{
 	
 	public AssocLineMode(ArrayList<Shape> shapeList, Canvas canvas) {
 		super(shapeList,canvas);
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -87,10 +88,6 @@ public class AssocLineMode extends Mode{
                 shapeList.add(assocLine);
                
             }
-//            startShape = null;
-//            endShape = null;
-//            assocLine = null;
-//            showLine = null;
 		}
 	}
 

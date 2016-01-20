@@ -21,7 +21,7 @@ public class UseCase extends BasicObject{
         ellipse.setDisable(true);
 
         text = new Text();
-        text.setText("use case");
+        text.setText(" '' ");
         text.setX(37);
         text.setY(45);
         text.setDisable(true);

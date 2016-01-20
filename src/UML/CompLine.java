@@ -9,6 +9,11 @@ public class CompLine extends LineObject{
 	public CompLine() {
 		// TODO Auto-generated constructor stub
         rectangle = new Polygon();
+//        rectangle.getPoints().addAll(
+//                0.0, 0.0,
+//                20.0, 0.0,
+//                20.0, 20.0,
+//                0.0, 20.0);
         rectangle.getPoints().addAll(
                 10.0, 0.0,
                 20.0, 10.0,
@@ -25,7 +30,7 @@ public class CompLine extends LineObject{
         rectangle.setLayoutX(this.connectLine.getEndX() - 10);
         rectangle.setLayoutY(this.connectLine.getEndY() - 10);
         System.out.println(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 + 90);
-        rectangle.setRotate(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 + 90);
+        rectangle.setRotate(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 +90 );//+90
     }
 
     public Polygon getRectangle() {

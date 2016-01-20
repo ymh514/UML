@@ -23,7 +23,7 @@ public class ClassBox extends BasicObject{
         line2.setDisable(true);
 
         text = new Text();
-        text.setText("Class Name");
+        text.setText(" '' ");
         text.setX(30);
         text.setY(23);
         text.setDisable(true);

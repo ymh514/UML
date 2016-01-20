@@ -14,6 +14,10 @@ public class GeneLine extends LineObject{
                 10.0,0.0,
                 0.0,20.0,
                 20.0,20.0);
+//        triangle.getPoints().addAll(
+//                0.0,0.0,
+//                0.0,20.0,
+//                20.0,10.0);  
         this.connectLine.setStroke(Color.BLACK);
         triangle.setFill(Color.GRAY);
         triangle.setStroke(Color.BLACK);
@@ -26,7 +30,7 @@ public class GeneLine extends LineObject{
         triangle.setLayoutX(this.connectLine.getEndX() - 10);
         triangle.setLayoutY(this.connectLine.getEndY() - 10);
         System.out.println(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 + 90);
-        triangle.setRotate(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 + 90);
+        triangle.setRotate(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 + 90 );//+90
     }
 
     public Polygon getTriangle() {

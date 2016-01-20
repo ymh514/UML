@@ -21,12 +21,14 @@ public class Shape extends Pane {
 		return null;
     	
     }
+    
     public boolean getSelectState(){
     	return selectState;
     }
     public void setSelected(Boolean selectState){
     	this.selectState = selectState;
     }
+    
     public Point2D[] getBoundary() {
         return null;
     }

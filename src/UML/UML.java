@@ -39,24 +39,11 @@ public class UML extends Application {
         primaryStage.setTitle("UML");
         BorderPane umlPane = new BorderPane();
         
-        Menu menuFile = new Menu("File");
-        Menu menuEdit = new Menu("Edit");
-        MenuItem groupItem = new MenuItem("Group");
-        MenuItem ungroupItem = new MenuItem("UnGroup");
-        MenuItem changeNameItem = new MenuItem("Change Object Name");
-        MenuItem exitItem = new MenuItem("Exit");
-        menuFile.getItems().add(exitItem);
-        menuEdit.getItems().addAll(groupItem,ungroupItem,changeNameItem);
-        menuBar.getMenus().addAll(menuFile,menuEdit);
+        generateMenubar();
 
         buttonPanel = new ButtonPanel(this);
         canvasPane = new Canvas(this);
         
-        
-//        exitItem.setOnAction(event ->{
-//        	System.out.println(menuBar.getMenus().get(1).getItems().get(0));
-//        	System.out.println("show show show ");
-//        });
         umlPane.setTop(menuBar);
         umlPane.setLeft(buttonPanel.getButtonPanel());
         umlPane.setRight(canvasPane.getCanvasPane());
@@ -80,5 +67,17 @@ public class UML extends Application {
 	}
 	public MenuBar getMenuBar(){
 		return this.menuBar;
+	}
+	public void generateMenubar(){
+        Menu menuFile = new Menu("File");
+        Menu menuEdit = new Menu("Edit");
+        MenuItem groupItem = new MenuItem("Group");
+        MenuItem ungroupItem = new MenuItem("UnGroup");
+        MenuItem changeNameItem = new MenuItem("Change Object Name");
+        MenuItem exitItem = new MenuItem("Exit");
+        menuFile.getItems().add(exitItem);
+        menuEdit.getItems().addAll(groupItem,ungroupItem,changeNameItem);
+        menuBar.getMenus().addAll(menuFile,menuEdit);
+
 	}
 }

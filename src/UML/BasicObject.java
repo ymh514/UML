@@ -18,8 +18,6 @@ public class BasicObject extends Shape {
     protected double halfPortSize = 5;
 
     protected Text text;
-//    protected ArrayList<Point2D> coordinate;
-
     protected ArrayList<Port> portList = new ArrayList<>(4);
     protected Port port1;
     protected Port port2;
@@ -34,9 +32,14 @@ public class BasicObject extends Shape {
         halfHeight = h/2;
 //        text = new Text("");
 //        coordinate = new ArrayList<>(4);
+        
+        //left
         port1 = new Port(-portSize, halfHeight - halfPortSize, portSize, portSize);
+        //top
         port2 = new Port(halfWidth - halfPortSize, -portSize, portSize, portSize);
+        //bottom
         port3 = new Port(halfWidth - halfPortSize, height, portSize, portSize);
+        //right
         port4 = new Port(width, halfHeight - halfPortSize, portSize, portSize);
        
         portList.add(port1);

@@ -68,6 +68,43 @@ public class Mode implements EventHandler<MouseEvent>{
         }
         return null;
 	}
+	
+	public void checkShapeInRange(Point2D inputStartPoint,Point2D inputEndPoint){
+		
+		Point2D startPoint = inputStartPoint;
+		Point2D endPoint = inputEndPoint;
+
+		/*
+		 *  start from the tail for the depth info.
+		 *  without group
+		 */
+        for(int i=this.shapeList.size()-1; i>=0; i--) {
+            if(this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.BasicObject") { // maybe change shape and add line
+                Shape tempShape = this.shapeList.get(i);
+                Point2D[] points = tempShape.getBoundary();
+                if(startPoint.getX()<points[0].getX() && startPoint.getY()<points[0].getY() && endPoint.getX()>points[1].getX() && endPoint.getY()>points[1].getY()){
+                	System.out.println("selected !!!!");
+                	tempShape.setSelected(true);
+                	tempShape.setShowSelect(true);
+
+                	this.shapeList.set(i, tempShape);
+                }
+            }
+            else if(this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.LineObject"){
+            	LineObject tempLine = (LineObject) this.shapeList.get(i);
+            	if(startPoint.getX()<tempLine.connectLine.getStartX() && startPoint.getY()<tempLine.connectLine.getStartY() && endPoint.getX()>tempLine.connectLine.getEndX() && endPoint.getY()>tempLine.connectLine.getEndY()){
+                	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            		tempLine.setSelected(true);
+            		tempLine.setShowSelect(true);
+                	this.shapeList.set(i, tempLine);
+            	}
+            	
+            }
+        }
+	}
+
+	
 	public Point2D getClosestPortDist(BasicObject endShape,double pressX,double pressY){
 		
 		Point2D pressCoor = new Point2D(pressX-endShape.getLayoutX(),pressY-endShape.getLayoutY());
@@ -166,5 +203,12 @@ public class Mode implements EventHandler<MouseEvent>{
 		}
 		return returnPort;
 	}
+	public void unSelectAllShape(){
+		for(int i=0;i<shapeList.size();i++){
+			shapeList.get(i).setSelected(false);
+			shapeList.get(i).setShowSelect(false);
+		}
+	}
+	
 
 }
