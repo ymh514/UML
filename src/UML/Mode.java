@@ -18,7 +18,7 @@ public class Mode implements EventHandler<MouseEvent> {
 
 	protected Canvas canvas;
 	protected Shape newShape;
-//	protected LineObject newLine;
+	protected LineObject newLine;
 	protected ArrayList<Shape> shapeList;
 	/*
 	 * under parameter is for line object

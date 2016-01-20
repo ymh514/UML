@@ -13,8 +13,7 @@ public class AssocLineMode extends Mode {
 	private Shape endShape;
 	private double pressX;
 	private double pressY;
-	private AssocLine assocLine;
-
+//	private AssocLine assocLine;
 	private Line showLine;
 
 	public AssocLineMode(ArrayList<Shape> shapeList, Canvas canvas) {
@@ -35,16 +34,16 @@ public class AssocLineMode extends Mode {
 	
 			if (startShape != null) {
 				Point2D startPort = getClosestPortDist((BasicObject) startShape, pressX, pressY);
-                assocLine = new AssocLine();
+                newLine = new AssocLine();
 
-				assocLine.setBeginPort(getClosestPort((BasicObject) startShape, pressX, pressY));
+                newLine.setBeginPort(getClosestPort((BasicObject) startShape, pressX, pressY));
 				showLine = new Line(startPort.getX(), startPort.getY(), startPort.getX(), startPort.getY());
-				assocLine.connectLine.setStartX(startPort.getX());
-				assocLine.connectLine.setStartY(startPort.getY());
+				newLine.connectLine.setStartX(startPort.getX());
+				newLine.connectLine.setStartY(startPort.getY());
 				canvas.getChildren().add(showLine);
 			} else {
 				startShape = null;
-				assocLine = null;
+				newLine = null;
 				showLine = new Line(pressX, pressY, pressX, pressY);
 				showLine.setStroke(Color.RED);
 				canvas.getChildren().add(showLine);
@@ -64,12 +63,12 @@ public class AssocLineMode extends Mode {
 			
 					if (endShape != null) {
 						Point2D endPort = getClosestPortDist((BasicObject) endShape, pressX, pressY);
-						assocLine.endPort = getClosestPort((BasicObject) endShape, pressX, pressY);
-						assocLine.connectLine.setEndX(endPort.getX());
-						assocLine.connectLine.setEndY(endPort.getY());
-						assocLine.setEndObj();
-						assocLine.draw(canvas);
-						shapeList.add(assocLine);
+						newLine.endPort = getClosestPort((BasicObject) endShape, pressX, pressY);
+						newLine.connectLine.setEndX(endPort.getX());
+						newLine.connectLine.setEndY(endPort.getY());
+						newLine.setEndObj();
+						newLine.draw(canvas);
+						shapeList.add(newLine);
 					}
 
 		}
