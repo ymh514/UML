@@ -71,7 +71,7 @@ public class AssocLineMode extends Mode{
 
                 assocLine.connectLine.setEndX(endPort.getX());
                 assocLine.connectLine.setEndY(endPort.getY());
-
+                
                 assocLine.draw(canvas);
                 shapeList.add(assocLine);
                

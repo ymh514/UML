@@ -39,6 +39,7 @@ public class Canvas extends Pane {
 	private MenuBar mulMenuBar;
 	private MenuItem changeNameItem;
 	private MenuItem groupItem;
+	private MenuItem unGroupItem;
 
 	private UML uml;
 	private ButtonPanel buttonPanel;
@@ -56,14 +57,22 @@ public class Canvas extends Pane {
 		this.uml = p;
 		this.buttonPanel = this.uml.getButtonPanel();
 		this.mulMenuBar = this.uml.getMenuBar();
-		this.changeNameItem = this.mulMenuBar.getMenus().get(1).getItems().get(2);
 		this.groupItem = this.mulMenuBar.getMenus().get(1).getItems().get(0);
+		this.unGroupItem = this.mulMenuBar.getMenus().get(1).getItems().get(1);
+		this.changeNameItem = this.mulMenuBar.getMenus().get(1).getItems().get(2);
 		this.buttonsList = this.buttonPanel.buttonsList;
 				
 		/*
 		 * menuBar 
 		 */
 		
+		groupItem.setOnAction(event ->{
+			groupEvent();
+
+		});
+		unGroupItem.setOnAction(event ->{
+			unGroupEvent();
+		});
 		changeNameItem.setOnAction(event ->{
 			changeNameEvent();
 		});
@@ -84,7 +93,60 @@ public class Canvas extends Pane {
 		});
 		
 	}
+	public void unGroupEvent(){
+		System.out.println("-------- " + shapeList.size()+" ---------");
+		for(int i=0;i<shapeList.size();i++){
+			Shape tempShape = shapeList.get(i);
+			if(tempShape.getSelectState() == true){
+				tempShape.unGroup(this.shapeList);
+			}		
+		}
+		System.out.println("-------- " + shapeList.size()+" ---------");
 
+		// 要讓group跑出來
+//		if(tempGroup != null){
+//			tempGroup.draw(this);
+//			shapeList.add(tempGroup);
+//		}
+
+		this.getChildren().clear();
+		for(int i=0;i<shapeList.size();i++){
+			shapeList.get(i).draw(this);
+		}
+
+	}
+	public void groupEvent(){
+		System.out.println("-------- " + shapeList.size()+" ---------");
+
+		GroupObject tempGroup = new GroupObject();
+		ArrayList<Shape> tempComponentList = new ArrayList<Shape>();
+		tempComponentList = tempGroup.getComponentList();
+		
+		for(int i=0;i<shapeList.size();i++){
+			Shape tempShape = shapeList.get(i);
+
+			if(tempShape.getSelectState() == true){
+				tempComponentList.add(tempShape);
+				shapeList.remove(i);
+				i=-1;
+			}		
+		}
+		tempGroup.generateRec();
+			
+		// 要讓group跑出來
+		if(tempGroup != null){
+			tempGroup.draw(this);
+			shapeList.add(tempGroup);
+		}
+
+		this.getChildren().clear();
+		for(int i=0;i<shapeList.size();i++){
+			shapeList.get(i).draw(this);
+		}
+	}
+
+	
+	
 	public void setCanvasMouseEvent(){
 	
 		this.setOnMousePressed(currentMode);

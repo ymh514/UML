@@ -94,6 +94,18 @@ public class Mode implements EventHandler<MouseEvent>{
             	}
             	
             }
+            else if(this.shapeList.get(i).getClass().getName() == "UML.GroupObject"){
+
+                Shape tempShape = this.shapeList.get(i);
+                Point2D[] points = tempShape.getBoundary();
+
+                if(startPoint.getX()<points[0].getX() && startPoint.getY()<points[0].getY() && endPoint.getX()>points[1].getX() && endPoint.getY()>points[1].getY()){
+                	tempShape.setSelected(true);
+
+                	this.shapeList.set(i, tempShape);
+                }
+            	
+            } 
         }
 	}
 

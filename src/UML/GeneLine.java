@@ -33,18 +33,20 @@ public class GeneLine extends LineObject{
         triangle.setRotate(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 + 90 );//+90
     }
 
-    public Polygon getTriangle() {
+    public Polygon getEndObj() {
         return triangle;
     }
     public void setEndObj(){
     	this.setTriangle();
     }
     public void draw(Canvas canvas){
+    	this.setSelected(false);
+
 		this.setConnectLineXY();
 		this.setEndObj();
 
         canvas.getChildren().add(this.connectLine);
-        canvas.getChildren().add(this.getTriangle());
+        canvas.getChildren().add(this.getEndObj());
 
     }
 }

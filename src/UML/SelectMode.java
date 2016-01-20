@@ -29,6 +29,7 @@ public class SelectMode extends Mode{
 			
 			if(event.getTarget() instanceof Shape){
 				clearSelect();
+
 				selectShape = (Shape) event.getTarget();
 				selectShape.setSelected(true);
 				shapeLayoutX = selectShape.getLayoutX();

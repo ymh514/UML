@@ -33,18 +33,20 @@ public class CompLine extends LineObject{
         rectangle.setRotate(-Math.atan2(-deltaY, deltaX) / Math.PI * 180 +90 );//+90
     }
 
-    public Polygon getRectangle() {
+    public Polygon getEndObj() {
         return rectangle;
     }
     public void setEndObj(){
     	this.setRectangle();
     }
 	public void draw(Canvas canvas){
+    	this.setSelected(false);
+
 		this.setConnectLineXY();
 		this.setEndObj();
 
         canvas.getChildren().add(this.connectLine);
-        canvas.getChildren().add(this.getRectangle());
+        canvas.getChildren().add(this.getEndObj());
 
 	}
 

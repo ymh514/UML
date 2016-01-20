@@ -85,5 +85,53 @@ public class BasicObject extends Shape {
 			}
     	}
     }
-    
+	@Override
+	public void setSelected(Boolean selectState) {
+		// TODO Auto-generated method stub
+    	super.selectState = selectState;
+    	this.setShowSelect(selectState);
+	}
+	@Override
+	public void draw(Canvas canvas) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+    public Point2D getGroupRectEndPt(Point2D points,Point2D endPoint,int i){
+		
+        if(i==0){
+        	endPoint= new Point2D(points.getX(), points.getY());
+
+        }
+        if(points.getX()>=endPoint.getX()){
+        	endPoint= new Point2D(points.getX(),endPoint.getY());
+        }
+        if(points.getY()>=endPoint.getY()){
+        	endPoint= new Point2D(endPoint.getX(),points.getY());
+        }
+        return endPoint;
+    }
+	@Override
+    public Point2D getGroupRectStartPt(Point2D points,Point2D startPoint,int i){
+		
+        if(i==0){
+        	startPoint= new Point2D(points.getX(), points.getY());
+
+        }
+        if(points.getX()<=startPoint.getX()){ 
+        	startPoint= new Point2D(points.getX(),startPoint.getY());
+        }
+        if(points.getY()<=startPoint.getY()){
+        	startPoint= new Point2D(startPoint.getX(),points.getY());
+        }
+        return startPoint;
+
+    }
+	@Override
+	public void unGroup(ArrayList<Shape> shapeList) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
