@@ -6,8 +6,6 @@ import javafx.scene.shape.Rectangle;
 
 public class LineObject extends Shape {
 	
-//    protected Shape startShape;
-//    protected Shape endShape;
     protected Line connectLine;
     protected Port beginPort;
     protected Port endPort;
@@ -17,24 +15,29 @@ public class LineObject extends Shape {
 	public LineObject() {
 		connectLine = new Line();
 		this.getChildren().add(connectLine);
-		System.out.println("Line Object constructor");
-
-		// TODO Auto-generated constructor stub
 	}
+	
+    public void draw(Canvas cavas){
+//		shapeList.set(i, tempLine);
 
-//    public void setStartShape(Shape shape) {
-//    	startShape = shape;
-//
-//    }
-//
-//    public void setEndShape(Shape shape) {
-//    	endShape = shape;
-//    }
-    
+    }
     public void setBeginPort(Port beginPort){
     	this.beginPort = beginPort;
     }
     public void setEndPort(Port endPort){
     	this.endPort = endPort;
     }
+    public void setEndObj(){
+    	
+    }
+    public void setConnectLineXY(){
+		this.connectLine.setStartX(this.beginPort.getLayoutXOnCanvas()+this.getLayoutX());
+		this.connectLine.setStartY(this.beginPort.getLayoutYOnCanvas()+this.getLayoutY());
+		this.connectLine.setEndX(this.endPort.getLayoutXOnCanvas()+this.getLayoutX());
+		this.connectLine.setEndY(this.endPort.getLayoutYOnCanvas()+this.getLayoutY());
+
+    }
+//    public void setBeginPort(Port beginPort){
+//    	
+//    }
 }

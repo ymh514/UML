@@ -14,21 +14,20 @@ public class Shape extends Pane {
     public Shape() {
     	System.out.println("shape constructor");
     }
-    public void setShowSelect(Boolean showValue){
-    	
-    }
-    public Shape draw(){
-		return null;
-    	
-    }
+    public void draw(Canvas canvas){    	
     
+    }
     public boolean getSelectState(){
     	return selectState;
     }
     public void setSelected(Boolean selectState){
     	this.selectState = selectState;
+    	this.setShowSelect(selectState);
     }
-    
+    public void setShowSelect(Boolean showValue){
+    	
+    }
+
     public Point2D[] getBoundary() {
         return null;
     }

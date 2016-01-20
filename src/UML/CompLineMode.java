@@ -28,18 +28,13 @@ public class CompLineMode extends Mode{
 			pressX = event.getX();
             pressY = event.getY();
             
-            Node tempNode = checkShape(pressX, pressY);
-            if(tempNode != null) {
-                if(tempNode.getClass().getSuperclass().getSuperclass().getName().equals("UML.Shape")) {
-                	startShape = checkShape(pressX, pressY);
-                }
-            }             
+            startShape = checkShape(pressX, pressY);
             
             if(startShape!=null){
         		System.out.println("find start shape");
                 Point2D startPort = getClosestPortDist((BasicObject)startShape,pressX,pressY);
                 compLine = new CompLine();
-                compLine.beginPort = getClosestPort((BasicObject)startShape, pressX, pressY);
+                compLine.setBeginPort(getClosestPort((BasicObject)startShape, pressX, pressY));
                 
                 showLine = new Line(startPort.getX(), startPort.getY(),
                 		startPort.getX(), startPort.getY());
@@ -66,29 +61,23 @@ public class CompLineMode extends Mode{
             pressX = event.getX();
             pressY = event.getY();
             endShape = null;
-            Node tempNode = checkShape(pressX, pressY);
-            if(tempNode != null) {
-                if(tempNode.getClass().getSuperclass().getSuperclass().getName().equals("UML.Shape")) {
-                	endShape = checkShape(pressX, pressY);
-                }
-            }                  
+            
+            endShape = checkShape(pressX, pressY);
    
             if(endShape!=null){
         		System.out.println("find end shape");
                 Point2D endPort = getClosestPortDist((BasicObject)endShape,pressX,pressY);
                 compLine.endPort = getClosestPort((BasicObject)endShape, pressX, pressY);
+                
                 compLine.connectLine.setEndX(endPort.getX());
                 compLine.connectLine.setEndY(endPort.getY());
+                
                 compLine.setRectangle();
-                canvas.getChildren().add(compLine.connectLine);
-                canvas.getChildren().add(compLine.getRectangle());
+                
+                compLine.draw(canvas);
                 shapeList.add(compLine);
                
             }
-//            startShape = null;
-//            endShape = null;
-//            assocLine = null;
-//            showLine = null;
 		}
 	}
 }

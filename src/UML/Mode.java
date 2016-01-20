@@ -13,6 +13,7 @@ import javafx.scene.input.PickResult;
 import javafx.scene.text.Text;
 
 public class Mode implements EventHandler<MouseEvent>{
+	
 	protected Canvas canvas;
 	protected Shape newShape;
 	protected ArrayList<Shape> shapeList;
@@ -30,17 +31,14 @@ public class Mode implements EventHandler<MouseEvent>{
 			System.out.println("Mouse Realeased"); 
 		}
 	}
+	
 	public Mode(ArrayList<Shape> shapeList,Canvas canvasPane){
 		this.shapeList = shapeList;
 		this.canvas = canvasPane;
 	}
 	
-	public Shape getNewShape(){
-		return this.newShape;
-	}
 
 	public Shape checkShape(double x,double y){
-//		System.out.println("in 1 st");
 
 		/*
 		 *  start from the tail for the depth info.
@@ -83,9 +81,7 @@ public class Mode implements EventHandler<MouseEvent>{
                 Shape tempShape = this.shapeList.get(i);
                 Point2D[] points = tempShape.getBoundary();
                 if(startPoint.getX()<points[0].getX() && startPoint.getY()<points[0].getY() && endPoint.getX()>points[1].getX() && endPoint.getY()>points[1].getY()){
-                	System.out.println("selected !!!!");
                 	tempShape.setSelected(true);
-                	tempShape.setShowSelect(true);
 
                 	this.shapeList.set(i, tempShape);
                 }
@@ -93,10 +89,7 @@ public class Mode implements EventHandler<MouseEvent>{
             else if(this.shapeList.get(i).getClass().getSuperclass().getName() == "UML.LineObject"){
             	LineObject tempLine = (LineObject) this.shapeList.get(i);
             	if(startPoint.getX()<tempLine.connectLine.getStartX() && startPoint.getY()<tempLine.connectLine.getStartY() && endPoint.getX()>tempLine.connectLine.getEndX() && endPoint.getY()>tempLine.connectLine.getEndY()){
-                	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
             		tempLine.setSelected(true);
-            		tempLine.setShowSelect(true);
                 	this.shapeList.set(i, tempLine);
             	}
             	
@@ -110,20 +103,10 @@ public class Mode implements EventHandler<MouseEvent>{
 		Point2D pressCoor = new Point2D(pressX-endShape.getLayoutX(),pressY-endShape.getLayoutY());
 		Point2D returnCoor = null;
 		Point2D shapeLayout = new Point2D(endShape.getLayoutX(),endShape.getLayoutY());
-//		System.out.println("pressX : "+pressX);
-//		System.out.println("pressY : "+pressY);
-//		System.out.println("shape layout x : "+shape.getLayoutX());
-//		System.out.println("shape layout y : "+shape.getLayoutY());
-//		System.out.println("x base on shape : "+(pressX-shape.getLayoutX()));
-//		System.out.println("y base on shape : "+(pressY-shape.getLayoutY()));
 		double distWizPorts[] = {0,0,0,0};
 		for(int i=0;i<endShape.portList.size();i++){
 			distWizPorts[i] = Math.hypot(pressCoor.getX()-endShape.portList.get(i).getX(), pressCoor.getY()-endShape.portList.get(i).getY());
 		}
-//		double distWizPort1 = Math.hypot(pressCoor.getX()-endShape.port1.getX(), pressCoor.getY()-endShape.port1.getY());
-//		double distWizPort2 = Math.hypot(pressCoor.getX()-endShape.port2.getX(), pressCoor.getY()-endShape.port2.getY());
-//		double distWizPort3 = Math.hypot(pressCoor.getX()-endShape.port3.getX(), pressCoor.getY()-endShape.port3.getY());
-//		double distWizPort4 = Math.hypot(pressCoor.getX()-endShape.port4.getX(), pressCoor.getY()-endShape.port4.getY());
 		double distTemp = Double.MIN_VALUE;
 		for(int i=0;i<distWizPorts.length;i++){
 			if(i==0){
@@ -133,11 +116,7 @@ public class Mode implements EventHandler<MouseEvent>{
 				distTemp = distWizPorts[i];
 			}
 		}
-//		double distTemp = Math.min(distWizPort1, Math.min(distWizPort2, Math.min(distWizPort3,distWizPort4)));
 		for(int i=0;i<distWizPorts.length;i++){
-//			if(distTemp == distWizPorts[i]){
-//				returnCoor = new Point2D(endShape.portList.get(i).getX()+shapeLayout.getX()+endShape.portSize, endShape.portList.get(i).getY()+shapeLayout.getY()+endShape.halfPortSize);
-//			}
 			if(distTemp == distWizPorts[0]){
 				System.out.println("near port1");
 				returnCoor = new Point2D(endShape.port1.getX()+shapeLayout.getX()+endShape.portSize, endShape.port1.getY()+shapeLayout.getY()+endShape.halfPortSize);
@@ -155,26 +134,6 @@ public class Mode implements EventHandler<MouseEvent>{
 				returnCoor = new Point2D(endShape.port4.getX()+shapeLayout.getX(), endShape.port4.getY()+shapeLayout.getY()+endShape.halfPortSize);
 			}
 		}
-//		if(distTemp == distWizPort1){
-//			System.out.println("near port1");
-//			returnCoor = new Point2D(endShape.port1.getX()+shapeLayout.getX()+endShape.portSize, endShape.port1.getY()+shapeLayout.getY()+endShape.halfPortSize);
-//		}
-//		else if(distTemp == distWizPort2){
-//			System.out.println("near port2");
-//			returnCoor = new Point2D(endShape.port2.getX()+shapeLayout.getX()+endShape.halfPortSize, endShape.port2.getY()+shapeLayout.getY()+endShape.portSize);
-//		}
-//		else if(distTemp == distWizPort3){
-//			System.out.println("near port3");
-//			returnCoor = new Point2D(endShape.port3.getX()+shapeLayout.getX()+endShape.halfPortSize, endShape.port3.getY()+shapeLayout.getY());
-//		}
-//		else if(distTemp == distWizPort4){
-//			System.out.println("near port4");
-//			returnCoor = new Point2D(endShape.port4.getX()+shapeLayout.getX(), endShape.port4.getY()+shapeLayout.getY()+endShape.halfPortSize);
-//		}
-//		else{
-//			System.out.println("algo wrong");
-//		}
-		
 		return returnCoor;
 	}
 	public Port getClosestPort(BasicObject endShape,double pressX,double pressY){

@@ -36,5 +36,16 @@ public class CompLine extends LineObject{
     public Polygon getRectangle() {
         return rectangle;
     }
+    public void setEndObj(){
+    	this.setRectangle();
+    }
+	public void draw(Canvas canvas){
+		this.setConnectLineXY();
+		this.setEndObj();
+
+        canvas.getChildren().add(this.connectLine);
+        canvas.getChildren().add(this.getRectangle());
+
+	}
 
 }

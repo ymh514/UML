@@ -6,7 +6,6 @@ import javafx.scene.input.MouseEvent;
 
 public class ClassBoxMode extends Mode{
 	
-	private ClassBox classBox;
 	
 	public ClassBoxMode(ArrayList<Shape> shapeList, Canvas canvas) {
 		super(shapeList,canvas);
@@ -17,14 +16,9 @@ public class ClassBoxMode extends Mode{
 	public void handle(MouseEvent event) {
 
 		if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
-			System.out.println("New ClassBox");
-			classBox = new ClassBox(event.getX(), event.getY());
-			this.newShape = classBox;
+			this.newShape = new ClassBox(event.getX(), event.getY());
 			this.shapeList.add(this.newShape);
-			this.canvas.getChildren().add(this.newShape);
-			System.out.println("classBox size : "+classBox.getChildren().size());
-			System.out.println("canvas size: "+this.canvas.getChildren().size());
-			System.out.println("shapeList size: "+this.shapeList.size());
+			this.newShape.draw(canvas);
 		}
 	}
 

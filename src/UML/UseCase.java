@@ -25,13 +25,16 @@ public class UseCase extends BasicObject{
         text.setX(37);
         text.setY(45);
         text.setDisable(true);
-        
+    
         super.tunePortPosition();
-
+        
         this.getChildren().addAll(ellipse, text);
 		System.out.println("use case constructor");
+	}
+	
+	public void draw(Canvas canvas){
+		canvas.getChildren().add(this);
 
-		// TODO Auto-generated constructor stub
 	}
 
 }

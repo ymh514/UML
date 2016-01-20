@@ -28,19 +28,13 @@ public class GeneLineMode extends Mode{
 			pressX = event.getX();
             pressY = event.getY();
             
-            Node tempNode = checkShape(pressX, pressY);
-            if(tempNode != null) {
-                if(tempNode.getClass().getSuperclass().getSuperclass().getName().equals("UML.Shape")) {
-                	startShape = checkShape(pressX, pressY);
-                }
-            }             
+            startShape = checkShape(pressX, pressY);
             
             if(startShape!=null){
         		System.out.println("find start shape");
                 Point2D startPort = getClosestPortDist((BasicObject)startShape,pressX,pressY);
                 geneLine = new GeneLine();
-                geneLine.beginPort = getClosestPort((BasicObject)startShape, pressX, pressY);
-                
+                geneLine.setBeginPort(getClosestPort((BasicObject)startShape, pressX, pressY));                
                 showLine = new Line(startPort.getX(), startPort.getY(),
                 		startPort.getX(), startPort.getY());
                 geneLine.connectLine.setStartX(startPort.getX());
@@ -66,29 +60,20 @@ public class GeneLineMode extends Mode{
             pressX = event.getX();
             pressY = event.getY();
             endShape = null;
-            Node tempNode = checkShape(pressX, pressY);
-            if(tempNode != null) {
-                if(tempNode.getClass().getSuperclass().getSuperclass().getName().equals("UML.Shape")) {
-                	endShape = checkShape(pressX, pressY);
-                }
-            }                  
+             
+            endShape = checkShape(pressX, pressY);
    
             if(endShape!=null){
         		System.out.println("find end shape");
                 Point2D endPort = getClosestPortDist((BasicObject)endShape,pressX,pressY);
-                geneLine.endPort = getClosestPort((BasicObject)endShape, pressX, pressY);
+                geneLine.setEndPort(getClosestPort((BasicObject)endShape, pressX, pressY));
                 geneLine.connectLine.setEndX(endPort.getX());
                 geneLine.connectLine.setEndY(endPort.getY());
-                geneLine.setTriangle();;
-                canvas.getChildren().add(geneLine.connectLine);
-                canvas.getChildren().add(geneLine.getTriangle());
+                geneLine.setTriangle();
+                geneLine.draw(canvas);
                 shapeList.add(geneLine);
                
             }
-//            startShape = null;
-//            endShape = null;
-//            assocLine = null;
-//            showLine = null;
 		}
 	}
 

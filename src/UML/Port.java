@@ -18,6 +18,7 @@ public class Port extends Rectangle {
 		this.setHeight(height);
 		this.setVisible(false);
 	}
+	
 	public void setLayoutXOnCanvas(double xOnCanvas){
 		this.layoutXOnCanvas = xOnCanvas;
 	}

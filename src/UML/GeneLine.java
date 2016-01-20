@@ -36,5 +36,15 @@ public class GeneLine extends LineObject{
     public Polygon getTriangle() {
         return triangle;
     }
+    public void setEndObj(){
+    	this.setTriangle();
+    }
+    public void draw(Canvas canvas){
+		this.setConnectLineXY();
+		this.setEndObj();
 
+        canvas.getChildren().add(this.connectLine);
+        canvas.getChildren().add(this.getTriangle());
+
+    }
 }

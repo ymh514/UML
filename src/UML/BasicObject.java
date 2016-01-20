@@ -30,8 +30,6 @@ public class BasicObject extends Shape {
         halfWidth = w/2;
         height = h;
         halfHeight = h/2;
-//        text = new Text("");
-//        coordinate = new ArrayList<>(4);
         
         //left
         port1 = new Port(-portSize, halfHeight - halfPortSize, portSize, portSize);
@@ -47,36 +45,7 @@ public class BasicObject extends Shape {
         portList.add(port3);
         portList.add(port4);
         
-        
-        
-//        for(int i=0;i<portList.size();i++){
-//        	portList.get(i).setLayoutXOnCanvas(this.getLayoutX()+portList.get(i).getX());
-//        	portList.get(i).setLayoutYOnCanvas(this.getLayoutY()+portList.get(i).getY());
-//        }
-//        
-//        for(int i=0;i<portList.size();i++){
-//        	System.out.println("------"+i+"-----");
-//        	System.out.println("layout x :"+portList.get(i).getX());
-//        	System.out.println("layout y :"+portList.get(i).getY());
-//        }
-        
-        
-        
-//        coordinate.add(new Point2D(this.getLayoutX(), this.getLayoutY() + height / 2));
-//        coordinate.add(new Point2D(this.getLayoutX() + width / 2, this.getLayoutY()));
-//        coordinate.add(new Point2D(this.getLayoutX() + width / 2, this.getLayoutY() + height));
-//        coordinate.add(new Point2D(this.getLayoutX() + width, this.getLayoutY() + height / 2));
-
-//        for(int i=0;i<coordinate.size();i++){
-//        	System.out.println("port coord. x: "+coordinate.get(i).getX()+" y: "+coordinate.get(i).getY());
-//        }
-//        System.out.println("port1-- x:"+port1.getX()+" y:"+port1.getY());
-//        System.out.println("port2-- x:"+port2.getX()+" y:"+port2.getY());
-//        System.out.println("port3-- x:"+port3.getX()+" y:"+port3.getY());
-//        System.out.println("port4-- x:"+port4.getX()+" y:"+port4.getY());
-
         this.getChildren().addAll(port1,port2,port3,port4);
-//        this.getChildren().add(text);
     }
     public void setName(String name){
     	this.text.setText(name);
@@ -87,17 +56,14 @@ public class BasicObject extends Shape {
     	this.port3.setVisible(showValue);
     	this.port4.setVisible(showValue);
     }
-    public Shape draw(){
-		return null;
-    }
-    
+   
     public Point2D[] getBoundary() {
         Point2D[] points = new Point2D[2];
         points[0] = new Point2D(this.getLayoutX(), this.getLayoutY());
         points[1] = new Point2D(this.getLayoutX() + width, this.getLayoutY() + height);
         return points;
     }
-    public void tunePortPosition(){
+    public void tunePortPosition(){ 
     	
     	for(int i=0;i<portList.size();i++){
 			if(i ==0){

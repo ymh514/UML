@@ -64,10 +64,6 @@ public class Canvas extends Pane {
 		 * menuBar 
 		 */
 		
-		groupItem.setOnAction(event ->{
-			groupEvent();
-		});
-		
 		changeNameItem.setOnAction(event ->{
 			changeNameEvent();
 		});
@@ -115,57 +111,7 @@ public class Canvas extends Pane {
 	public String getEventCoordinate(){
 		return eventCoordinate;
 	}
-	
-	public void groupEvent(){
-		System.out.println("-------- " + shapeList.size()+" ---------");
-
-		GroupObject tempGroup = new GroupObject();
-		ArrayList<Shape> tempComponentList = new ArrayList<Shape>();
-		tempComponentList = tempGroup.getComponentList();
 		
-		for(int i=0;i<shapeList.size();i++){
-			Shape tempShape = shapeList.get(i);
-			System.out.println(tempShape.getSelectState());
-		}
-		
-		for(int i=0;i<shapeList.size();i++){
-			Shape tempShape = shapeList.get(i);
-			Boolean temp = tempShape.getSelectState();
-
-			if(temp == true){
-				tempComponentList.add(tempShape);
-				
-				if(tempShape instanceof LineObject){
-					System.out.println("友友友");
-
-					LineObject tempLine = (LineObject) tempShape;
-					
-					for(int j=0;j<this.getChildren().size();j++){
-						if(this.getChildren().get(j) == tempLine.connectLine){
-							this.getChildren().remove(j);
-						}
-					}
-				}
-				else{
-					this.getChildren().remove(i);
-				}
-				shapeList.remove(i);
-				i=-1;
-			}		
-
-		}
-		
-		// 要讓group跑出來
-		if(tempGroup != null){
-			tempGroup.loadCompList();
-			shapeList.add(tempGroup);
-			this.getChildren().add(tempGroup);
-//			System.out.println("group "+tempGroup.getChildren().size());
-		}
-		
-		System.out.println("-------- " + shapeList.size()+" ---------");
-	}
-	
 	public void changeNameEvent(){
 		
 		/*
