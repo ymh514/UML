@@ -1,2 +1,2 @@
-# UML_test
-just test .
+# UML
+Object Oriented Programming final project.
