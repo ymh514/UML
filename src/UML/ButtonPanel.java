@@ -44,8 +44,6 @@ public class ButtonPanel extends VBox {
         compLineBtn.setToggleGroup(btnGroup);
         classBoxBtn.setToggleGroup(btnGroup);
         useCaseBtn.setToggleGroup(btnGroup);
-//        selectBtn.setSelected(true);
-//        current = btnGroup.getSelectedToggle();
         
         buttonPanel.getChildren().addAll(selectBtn,assocLineBtn,geneLineBtn,compLineBtn,classBoxBtn,useCaseBtn);
         
@@ -60,9 +58,5 @@ public class ButtonPanel extends VBox {
 	public VBox getButtonPanel(){
 		return this.buttonPanel;
 	}
-//	public Toggle getCurrnet(){
-//		return this.current;
-//	}
-
 
 }
